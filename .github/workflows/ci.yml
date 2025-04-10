@@ -1,0 +1,21 @@
+name: Run on Commit
+
+on: 
+  push:
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repositorium clone
+        uses: actions/checkout@v3
+
+      - name: Install Python
+        uses: action/setup-pythonv4
+        with: python-version: "3.10"
+
+      - name: Install dependences
+        run: pip install -r requirements.txt
+
+      - name: Launch tests
+        run: pytest
